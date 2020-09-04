@@ -1,4 +1,99 @@
+.container {
+  padding: 10px;
+  width: 500px;
+  font-family: "Baloo Tamma 2", cursive;
+}
+
+.whole-card {
+  background-image: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);
+  border: 1px solid #cd9cf2;
+  border-radius: 4px;
+}
+
 h1 {
+  color: #460777;
+  font-size: 40px;
+  margin: 15px 0 0 0;
+}
+
+p.date-time {
+  font-size: 15px;
+  margin: 0 auto;
+}
+
+.current-temp {
+  color: #4d4c53;
+  font-size: 80px;
+  font-weight: 200;
+  margin: 0 auto;
+  padding: 20px 0;
+  position: relative;
+  top: 40px;
+}
+
+.unit {
+  font-size: 22px;
+  margin: 30px 0 0;
+}
+
+ul {
+  margin-top: 30px;
+  padding-left: 20px;
   text-align: center;
-  color: olivedrab;
+}
+
+li {
+  color: #4d4c53;
+  display: inline;
+  font-size: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  color: #4d4c53;
+}
+
+.city-search {
+  background: #f6f3ff;
+  border: 2px solid #cd9cf2;
+  border-radius: 20px;
+  color: #4d4c53;
+  padding: 1px 10px;
+  width: 100%;
+}
+
+.search-button {
+  background: #cd9cf2;
+  border: 2px solid #cd9cf2;
+  border-radius: 20px;
+  padding: 1px 10px;
+}
+
+.weekly-card {
+  background: #f6f3ff;
+  border: 1px solid #f6f3ff;
+  border-radius: 4px;
+  color: #4d4c53;
+}
+
+.weekly-forecast {
+  display: block;
+  margin: 0 auto;
+}
+
+.day-of-week {
+  font-size: 13px;
+  text-align: center;
+}
+
+.symbol {
+  text-align: center;
+  font-size: 35px;
+}
+
+.weekly-temp {
+  font-size: 16px;
+  text-align: center;
 }

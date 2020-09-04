@@ -1,14 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+        integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/9f1ecad0bf.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Hello Git</h1>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
+</head>
 
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body whole-card shadow-sm">
+                <form id="search-form">
+                    <div class="row">
+                        <div class="col-7">
+                            <input type="search" name="City" class="city-search" placeholder="Search another city"
+                                autocomplete="off" id="city-input" />
+                        </div>
+                        <div class="col-2">
+                            <input type="submit" value="Search" class="search-button shadow-sm" id="search-button" />
+                        </div>
+                        <div class="col-2">
+                </form>
+                <button class="search-button current-button shadow-sm" id="current-button">
+                    Current
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-7">
+                <h1 class="current-city" id="current-city">
+
+                </h1>
+                <p class="date-time" id="current-time">
+
+                </p>
+                <div class="row">
+                    <p class="details">
+                    <ul>
+                        <li>
+                            <i class="fas fa-tint"></i> <span id="precipitation"></span>% &nbsp; &nbsp; &nbsp; &nbsp;
+                        </li>
+                        <li>
+                            <i class="fas fa-wind"></i> <span id="wind-speed"></span> mph &nbsp; &nbsp; &nbsp; &nbsp;
+                        </li>
+                        <li>
+                            <i class="fas fa-umbrella-beach"></i> <span id="weather-description"></span>
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="row">
+                    <h2>
+                        <span class="current-temp" id="current-temp"></span>
+                        <span class=unit>
+                            <a href="#" id="to-celsius"> ˚C </a>
+                            |
+                            <a href="#" id="to-fahrenheit"> ˚F </a>
+                        </span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body weekly-card">
+                <div class="row">
+                    <div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            today
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-sun weekly-forecast symbol"></i>
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            88˚
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            tuesday
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-cloud-sun weekly-forecast symbol"></i>
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            87˚
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            wednesday
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-sun weekly-forecast symbol"></i>
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            87˚
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            thursday
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-sun weekly-forecast symbol"></i>
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            89˚
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            friday
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-cloud-sun weekly-forecast symbol"></i>
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            85˚
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
