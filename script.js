@@ -29,6 +29,8 @@ function showWeather(response) {
   );
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].main;
+
+  fahrenheitTemp = response.data.main.temp;
 }
 
 // Display name, temp, and info of current location
@@ -92,14 +94,15 @@ function currentTime() {
 let timeShown = document.querySelector("#current-time");
 timeShown.innerHTML = currentTime();
 
-search("Tel Aviv");
+let fahrenheitTemp = null;
 
-/*
 // Link to convert between celsius and fahrenheit
 function toCelsius(event) {
   event.preventDefault();
-  let arbitraryTemp = 88;
-  let degreesC = Math.round(((arbitraryTemp - 32) * 5) / 9);
+  let degreesC = Math.round(((fahrenheitTemp - 32) * 5) / 9);
+
+  tempFahrenheit.classList.remove("active");
+  tempCelsius.classList.add("active");
 
   let tempDisplayed = document.querySelector("#current-temp");
   tempDisplayed.innerHTML = degreesC;
@@ -107,15 +110,17 @@ function toCelsius(event) {
 
 function toFahrenheit(event) {
   event.preventDefault();
-  let arbitraryTemp2 = 31;
-  let degreesF = Math.round((arbitraryTemp2 * 9) / 5 + 32);
+
+  tempFahrenheit.classList.add("active");
+  tempCelsius.classList.remove("active");
 
   let tempDisplayed = document.querySelector("#current-temp");
-  tempDisplayed.innerHTML = degreesF;
+  tempDisplayed.innerHTML = Math.round(fahrenheitTemp);
 }
 
 let tempCelsius = document.querySelector("#to-celsius");
 let tempFahrenheit = document.querySelector("#to-fahrenheit");
 tempCelsius.addEventListener("click", toCelsius);
 tempFahrenheit.addEventListener("click", toFahrenheit);
-*/
+
+search("Tel Aviv");

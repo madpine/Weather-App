@@ -36,6 +36,15 @@ p.date-time {
   margin: 30px 0 0;
 }
 
+.unit .active {
+  color: #4d4c53;
+  cursor: default;
+}
+
+.unit .active:hover {
+  text-decoration: none;
+}
+
 ul {
   margin-top: 30px;
   padding-left: 20px;
