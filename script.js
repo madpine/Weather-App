@@ -5,6 +5,9 @@ function search(city) {
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
 
   axios.get(apiURL).then(showWeather);
+
+  apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiURL).then(showForecast);
 }
 
 // Display searched city name, temp, and info
@@ -31,6 +34,130 @@ function showWeather(response) {
     response.data.weather[0].main;
 
   fahrenheitTemp = response.data.main.temp;
+}
+
+//Display forecast
+function showForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  let time = new Date();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = time.getDay();
+  /*
+  for (let index = 0; index < 33; index + 8) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `<div class="col">
+                          <div class="row weekly-forecast day-of-week">
+                              Today
+                          </div>
+                          <div class="row">
+                              <img
+                                src="https://openweathermap.org/img/wn/${
+                                  forecast.weather[0].icon
+                                }@2x.png"
+                              />
+                          </div>
+                          <div class="row weekly-forecast weekly-temp">
+                              ${Math.round(forecast.main.temp)}˚
+                          </div>
+                      </div>`;
+  }
+*/
+  forecast = response.data.list[0];
+  forecastElement.innerHTML += `<div class="col">
+                          <div class="row weekly-forecast day-of-week">
+                              Today
+                          </div>
+                          <div class="row">
+                              <img
+                                src="https://openweathermap.org/img/wn/${
+                                  forecast.weather[0].icon
+                                }@2x.png"
+                              />
+                          </div>
+                          <div class="row weekly-forecast weekly-temp">
+                              ${Math.round(forecast.main.temp)}˚
+                          </div>
+                      </div>`;
+
+  forecast = response.data.list[8];
+  forecastElement.innerHTML += `<div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            ${days[day + 1]}
+                        </div>
+                        <div class="row">
+                            <img
+                              src="https://openweathermap.org/img/wn/${
+                                forecast.weather[0].icon
+                              }@2x.png"
+                            />
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            ${Math.round(forecast.main.temp)}˚
+                        </div>
+                    </div>`;
+
+  forecast = response.data.list[16];
+  forecastElement.innerHTML += `<div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            ${days[day + 2]}
+                        </div>
+                        <div class="row">
+                            <img
+                              src="https://openweathermap.org/img/wn/${
+                                forecast.weather[0].icon
+                              }@2x.png"
+                            />
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            ${Math.round(forecast.main.temp)}˚
+                        </div>
+                    </div>`;
+
+  forecast = response.data.list[24];
+  forecastElement.innerHTML += `<div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            ${days[day + 3]}
+                        </div>
+                        <div class="row">
+                            <img
+                              src="https://openweathermap.org/img/wn/${
+                                forecast.weather[0].icon
+                              }@2x.png"
+                            />
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            ${Math.round(forecast.main.temp)}˚
+                        </div>
+                    </div>`;
+
+  forecast = response.data.list[32];
+  forecastElement.innerHTML += `<div class="col">
+                        <div class="row weekly-forecast day-of-week">
+                            ${days[day + 4]}
+                        </div>
+                        <div class="row">
+                            <img
+                              src="https://openweathermap.org/img/wn/${
+                                forecast.weather[0].icon
+                              }@2x.png"
+                            />
+                        </div>
+                        <div class="row weekly-forecast weekly-temp">
+                            ${Math.round(forecast.main.temp)}˚
+                        </div>
+                    </div>`;
 }
 
 // Display name, temp, and info of current location
