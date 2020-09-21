@@ -99,7 +99,14 @@ p {
 
 .symbol {
   text-align: center;
-  font-size: 35px;
+  font-size: 20px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: 70px;
 }
 
 .weekly-temp {
@@ -108,5 +115,6 @@ p {
 }
 
 p.github-link {
+  font-size: 13px;
   text-align: center;
 }

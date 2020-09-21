@@ -36,36 +36,40 @@ function showWeather(response) {
   fahrenheitTemp = response.data.main.temp;
 }
 
+function formatHours(timestamp) {
+  let time = new Date(timestamp);
+
+  let currentHour = time.getHours();
+  let currentMinutes = time.getMinutes();
+
+  if (currentHour < 10) {
+    currentHour = `0${currentHour}`;
+  }
+
+  if (currentMinutes < 10) {
+    currentMinutes = `0${currentMinutes}`;
+  }
+  return `${currentHour}:${currentMinutes}`;
+}
+
 //Display forecast
 function showForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
 
-  let time = new Date();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let day = time.getDay();
-  /*
-  for (let index = 0; index < 33; index + 8) {
+  for (let index = 0; index < 5; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `<div class="col">
                           <div class="row weekly-forecast day-of-week">
-                              Today
+                              ${formatHours(forecast.dt * 1000)}
                           </div>
                           <div class="row">
                               <img
                                 src="https://openweathermap.org/img/wn/${
                                   forecast.weather[0].icon
                                 }@2x.png"
+                                class="symbol"
                               />
                           </div>
                           <div class="row weekly-forecast weekly-temp">
@@ -73,91 +77,6 @@ function showForecast(response) {
                           </div>
                       </div>`;
   }
-*/
-  forecast = response.data.list[0];
-  forecastElement.innerHTML += `<div class="col">
-                          <div class="row weekly-forecast day-of-week">
-                              Today
-                          </div>
-                          <div class="row">
-                              <img
-                                src="https://openweathermap.org/img/wn/${
-                                  forecast.weather[0].icon
-                                }@2x.png"
-                              />
-                          </div>
-                          <div class="row weekly-forecast weekly-temp">
-                              ${Math.round(forecast.main.temp)}˚
-                          </div>
-                      </div>`;
-
-  forecast = response.data.list[8];
-  forecastElement.innerHTML += `<div class="col">
-                        <div class="row weekly-forecast day-of-week">
-                            ${days[day + 1]}
-                        </div>
-                        <div class="row">
-                            <img
-                              src="https://openweathermap.org/img/wn/${
-                                forecast.weather[0].icon
-                              }@2x.png"
-                            />
-                        </div>
-                        <div class="row weekly-forecast weekly-temp">
-                            ${Math.round(forecast.main.temp)}˚
-                        </div>
-                    </div>`;
-
-  forecast = response.data.list[16];
-  forecastElement.innerHTML += `<div class="col">
-                        <div class="row weekly-forecast day-of-week">
-                            ${days[day + 2]}
-                        </div>
-                        <div class="row">
-                            <img
-                              src="https://openweathermap.org/img/wn/${
-                                forecast.weather[0].icon
-                              }@2x.png"
-                            />
-                        </div>
-                        <div class="row weekly-forecast weekly-temp">
-                            ${Math.round(forecast.main.temp)}˚
-                        </div>
-                    </div>`;
-
-  forecast = response.data.list[24];
-  forecastElement.innerHTML += `<div class="col">
-                        <div class="row weekly-forecast day-of-week">
-                            ${days[day + 3]}
-                        </div>
-                        <div class="row">
-                            <img
-                              src="https://openweathermap.org/img/wn/${
-                                forecast.weather[0].icon
-                              }@2x.png"
-                            />
-                        </div>
-                        <div class="row weekly-forecast weekly-temp">
-                            ${Math.round(forecast.main.temp)}˚
-                        </div>
-                    </div>`;
-
-  forecast = response.data.list[32];
-  forecastElement.innerHTML += `<div class="col">
-                        <div class="row weekly-forecast day-of-week">
-                            ${days[day + 4]}
-                        </div>
-                        <div class="row">
-                            <img
-                              src="https://openweathermap.org/img/wn/${
-                                forecast.weather[0].icon
-                              }@2x.png"
-                            />
-                        </div>
-                        <div class="row weekly-forecast weekly-temp">
-                            ${Math.round(forecast.main.temp)}˚
-                        </div>
-                    </div>`;
 }
 
 // Display name, temp, and info of current location
