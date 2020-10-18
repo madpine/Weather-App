@@ -1,7 +1,6 @@
 // Display a default city when refreshing
 function search(city) {
   let apiKey = "669df815a230d0606e20716b21beda24";
-  let unit = "imperial";
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
 
   axios.get(apiURL).then(showWeather);
@@ -9,6 +8,8 @@ function search(city) {
   apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${unit}&appid=${apiKey}`;
   axios.get(apiURL).then(showForecast);
 }
+
+let unit = "imperial";
 
 // Display searched city name, temp, and info
 function searchCity(event) {
@@ -33,7 +34,7 @@ function showWeather(response) {
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].main;
 
-  fahrenheitTemp = response.data.main.temp;
+  temp = response.data.main.temp;
 }
 
 function formatHours(timestamp) {
@@ -143,28 +144,40 @@ function currentTime() {
 let timeShown = document.querySelector("#current-time");
 timeShown.innerHTML = currentTime();
 
-let fahrenheitTemp = null;
+let temp = null;
 
 // Link to convert between celsius and fahrenheit
 function toCelsius(event) {
   event.preventDefault();
-  let degreesC = Math.round(((fahrenheitTemp - 32) * 5) / 9);
+  if (unit === "metric") {
+    return;
+  }
+  let degreesC = Math.round(((temp - 32) * 5) / 9);
 
   tempFahrenheit.classList.remove("active");
   tempCelsius.classList.add("active");
 
   let tempDisplayed = document.querySelector("#current-temp");
   tempDisplayed.innerHTML = degreesC;
+  temp = degreesC;
+
+  unit = "metric";
 }
 
 function toFahrenheit(event) {
   event.preventDefault();
-
+  if (unit === "imperial") {
+    return;
+  }
+  let degreesF = Math.round((temp * 9) / 5 + 32);
   tempFahrenheit.classList.add("active");
   tempCelsius.classList.remove("active");
 
   let tempDisplayed = document.querySelector("#current-temp");
-  tempDisplayed.innerHTML = Math.round(fahrenheitTemp);
+  tempDisplayed.innerHTML = degreesF;
+  temp = degreesF;
+
+  unit = "imperial";
 }
 
 let tempCelsius = document.querySelector("#to-celsius");
